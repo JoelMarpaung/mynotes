@@ -58,9 +58,8 @@ class _LoginViewState extends State<LoginView> {
               try {
                 final email = _email.text;
                 final password = _password.text;
-                final userCredential = await FirebaseAuth.instance
-                    .signInWithEmailAndPassword(
-                        email: email, password: password);
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    email: email, password: password);
                 Navigator.of(context)
                     .pushNamedAndRemoveUntil(notesRoute, (route) => false);
               } on FirebaseAuthException catch (e) {
@@ -69,7 +68,8 @@ class _LoginViewState extends State<LoginView> {
                 } else if (e.code == 'wrong-password') {
                   await showErrorDialog(context, 'Wrong password');
                 } else {
-                  await showErrorDialog(context, 'Error ${e.code}');
+                  await showErrorDialog(
+                      context, 'Error : ${e.code} - ${e.message}');
                 }
               }
             },
