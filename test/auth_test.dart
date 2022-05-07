@@ -100,7 +100,7 @@ class MockAuthProvider implements AuthProvider {
 
   @override
   Future<void> initialize() async {
-    Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     _isInitialized = true;
   }
 
